@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useSnapshot } from "valtio";
 import { CustomButton } from "../components";
+import HomeCss from "../pages/Home.css?inline";
+import VitaminC from "../images/VitaminC.png?inline";
 
 import state from "../store";
 
@@ -16,39 +18,40 @@ const Home = () => {
   return (
     <AnimatePresence>
       {snap.intro && (
-        <motion.section className="home" {...slideAnimation("left")}>
-          <motion.header {...slideAnimation("down")}>
-            <img
-              src="../src/assets/logo.png"
-              alt="logo"
-              className="w-16 h-15 object-contain"
-            />
-          </motion.header>
-
+        <motion.section
+          className="home"
+          {...slideAnimation("left")}
+          style={{
+            backgroundImage: `url(${VitaminC})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            height: "100vh",
+          }}
+        >
           <motion.div className="home-content" {...headContainerAnimation}>
             <motion.div {...headTextAnimation}>
-              <h1 className="head-text">
-                LET'S <br className="xl:block hidden" /> DO IT.
+              <h1 className="head-text" style={{ color: "darkorange" }}>
+                THE SECRET <br className="x-l:block" /> TO GLOWING SKIN.
               </h1>
             </motion.div>
             <motion.div
               {...headContentAnimation}
               className="flex flex-col gap-5"
             >
-              <p className="max-w-md font-normal text-gray-600 text-base">
-                Create your unique and exclusive shirt with our brand-new 3D
-                customization tool. <strong> Unleash your imagination </strong>{" "}
-                and define your own style.
+              <p className="max-w-md font-normal text-white text-base">
+                Unlock the power of Vitamin C and experience the transformation
+                of your skin. Our Vitamin C Serum is carefully formulated to
+                rejuvenate and revitalize your complexion, leaving it radiant,
+                youthful, and healthy.
               </p>
 
               <CustomButton
-              type="filled"
-              title="Customize It"
-              handleClick={() => state.intro = false}
-              customStyles="w-fit px-4 py2.5 font-bold text-sm"
+                type="filled"
+                title="Order Now"
+                handleClick={() => (state.intro = false)}
+                customStyles="w-fit px-4 py2.5 font-bold text-sm"
               />
-
-
             </motion.div>
           </motion.div>
         </motion.section>
